@@ -1,1 +1,181 @@
-<h1>Salut de la Hackathon!</h1>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetele Powerbug - Hackathon Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Resetare si Stiluri Generale --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0d0124; /* Fundal indigo inchis profund */
+            /* Fundal cu particule subtile */
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(131, 58, 180, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(29, 161, 242, 0.1) 0%, transparent 40%),
+                repeating-radial-gradient(rgba(255, 255, 255, 0.03) 0, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 100%);
+            background-size: cover, cover, 15px 15px;
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Prevenim scroll-ul pe desktop */
+        }
+
+        /* --- Containerul Principal al Ecranului --- */
+        .screen-container {
+            width: 90vw;
+            height: 90vh;
+            max-width: 1400px;
+            max-height: 900px;
+            background: rgba(13, 1, 36, 0.8); /* Fundal semi-transparent pentru cadru */
+            border: 2px solid #ff007f; /* Conturul principal roz neon */
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(255, 0, 127, 0.3); /* Glow roz subtil */
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        /* --- Elemente decorative de colt din poza --- */
+        .screen-container::before, .screen-container::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-color: #ff007f;
+            border-style: solid;
+            pointer-events: none;
+        }
+        .screen-container::before {
+            top: -10px; left: -10px;
+            border-width: 10px 0 0 10px;
+        }
+        .screen-container::after {
+            bottom: -10px; right: -10px;
+            border-width: 0 10px 10px 0;
+        }
+
+        /* --- Zona Header (Logouri si Titlu) --- */
+        .header-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        /* Icoana Scarabeu (Tech Bug) din stanga-sus */
+        .scarab-icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 70px;
+            height: 70px;
+            /* Folosim un SVG inline pentru a fi self-contained */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,15 A15,15 0 0,0 35,30 A15,15 0 0,0 50,45 A15,15 0 0,0 65,30 A15,15 0 0,0 50,15 Z M50,45 L50,85 M35,60 L20,50 M35,70 L15,70 M65,60 L80,50 M65,70 L85,70" stroke="%23ff007f" stroke-width="3" fill="none"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+        }
+
+        /* Titlul principal: FETELE POWERBUG */
+        .team-name {
+            font-family: 'Audiowide', cursive; /* Font futuristic/sci-fi */
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-align: center;
+            /* Efect de neon roz si albastru */
+            text-shadow: 
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 20px #ff007f,
+                0 0 30px #ff007f,
+                0 0 40px #ff007f,
+                0 0 55px #ff007f,
+                0 0 75px #ff007f,
+                -1px -1px 0 #00ffff,
+                1px 1px 0 #00ffff;
+            animation: glitch 3s infinite; /* Mic efect de "glitch" */
+        }
+
+        /* Sloganul: Powerbug: Schimbăm lumea. O linie de cod pe rând. */
+        .slogan-text {
+            font-size: 1.1rem;
+            font-weight: 300;
+            text-align: center;
+            color: #b0c4de; /* Albastru pal/argintiu */
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: -0.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        /* Linie decorativa sub slogan */
+        .slogan-text::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #00ffff, transparent);
+        }
+
+        /* Gila hex din dreapta-sus */
+        .hex-grid {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 120px;
+            height: 70px;
+            opacity: 0.3;
+            background-image: linear-gradient(30deg, #00ffff 12%, transparent 12.5%, transparent 87%, #00ffff 87.5%, #00ffff), linear-gradient(150deg, #00ffff 12%, transparent 12.5%, transparent 87%, #00ffff 87.5%, #00ffff), linear-gradient(30deg, #00ffff 12%, transparent 12.5%, transparent 87%, #00ffff 87.5%, #00ffff), linear-gradient(150deg, #00ffff 12%, transparent 12.5%, transparent 87%, #00ffff 87.5%, #00ffff), linear-gradient(60deg, #00ffff77 25%, transparent 25.5%, transparent 75%, #00ffff77 75%, #00ffff77), linear-gradient(60deg, #00ffff77 25%, transparent 25.5%, transparent 75%, #00ffff77 75%, #00ffff77);
+            background-size: 20px 35px;
+            background-position: 0 0, 0 0, 10px 18px, 10px 18px, 0 0, 10px 18px;
+        }
+
+        /* --- Zona Principala cu Numele Participantelor --- */
+        .main-frame {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 0, 127, 0.4); /* Contur intern subtil */
+            border-radius: 5px;
+            background: rgba(13, 1, 36, 0.5); /* Mai intunecat in centru */
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Lista centralizata de carduri */
+        .name-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* --- Stilul Cardurilor (Glassmorphism + Neon) --- */
+        .name-card {
+            background: rgba(255, 255, 255, 0.05); /* Sticla foarte transparenta */
+            border: 1px solid rgba(255, 0, 127, 0.7); /* Contur roz neon */
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 
+                0 4px 15px rgba(255, 0, 127, 0.2), /* Glow roz exterior */
+                inset 0 0 10px rgba(0, 255, 255, 0.1); /* Glow turcoaz interior subtil */
+            backdrop-filter: blur(5px); /* Efect de sticla ing
