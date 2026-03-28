@@ -178,5 +178,139 @@
             box-shadow: 
                 0 4px 15px rgba(255, 0, 127, 0.2), /* Glow roz exterior */
                 inset 0 0 10px rgba(0, 255, 255, 0.1); /* Glow turcoaz interior subtil */
-            backdrop-filter: blur(5px); /* Efect de sticla ing
+            backdrop-filter: blur(5px); /* Efect de sticla inghetata */
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        /* Efect la hover (subtil, desi nu tb butoane) */
+        .name-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 0, 127, 0.4);
+        }
+
+        /* Modelele decorative interne ale cardurilor (Hex si Linii Tech) */
+        .card-pattern {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.1;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 10px 10px;
+            pointer-events: none;
+        }
+        .name-card::before { /* Element decorativ stanga */
+            content: ""; position: absolute; left: 10px; top: 10px; width: 30px; height: 30px;
+            border-left: 3px solid rgba(0, 255, 255, 0.6);
+            border-top: 3px solid rgba(0, 255, 255, 0.6);
+        }
+        .name-card::after { /* Element decorativ dreapta */
+            content: ""; position: absolute; right: 10px; bottom: 10px; width: 30px; height: 30px;
+            border-right: 3px solid rgba(255, 0, 127, 0.6);
+            border-bottom: 3px solid rgba(255, 0, 127, 0.6);
+        }
+
+        /* Numele participantelor (Textul din card) */
+        .member-name {
+            font-size: 2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-align: center;
+            /* Text cu efect de neon alb si roz */
+            color: #fff;
+            text-shadow: 
+                0 0 5px #fff,
+                0 0 10px #ff007f,
+                0 0 15px #ff007f,
+                0 0 20px #ff007f;
+        }
+
+        /* --- Zona Status Dreapta-Jos --- */
+        .code-status {
+            position: absolute;
+            right: 2rem;
+            bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.6;
+            color: #ff007f;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        /* Icoana < / > cu mic scarabeu */
+        .code-icon {
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .scarab-mini {
+            width: 20px; height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,15 A15,15 0 0,0 35,30 A15,15 0 0,0 50,45 A15,15 0 0,0 65,30 A15,15 0 0,0 50,15 Z M50,45 L50,85 M35,60 L20,50 M35,70 L15,70 M65,60 L80,50 M65,70 L85,70" stroke="%23ff007f" stroke-width="5" fill="none"/></svg>');
+            background-size: contain; background-repeat: no-repeat;
+        }
+
+        /* --- Animatii si Media Queries --- */
+        @keyframes glitch {
+            0% { transform: translate(0); text-shadow: 0 0 5px #fff, 0 0 10px #ff007f, -1px -1px 0 #00ffff, 1px 1px 0 #00ffff; }
+            2% { transform: translate(-2px, 1px); }
+            4% { transform: translate(2px, -1px); }
+            6% { transform: translate(0); }
+            100% { transform: translate(0); }
+        }
+
+        /* Adaptare pentru ecrane mai mici (mobile) */
+        @media (max-width: 768px) {
+            .screen-container { width: 95vw; height: 95vh; padding: 1rem; }
+            .team-name { font-size: 2.2rem; }
+            .slogan-text { font-size: 0.9rem; letter-spacing: 1px; }
+            .scarab-icon { width: 40px; height: 40px; top: 10px; left: 10px; }
+            .hex-grid { width: 80px; height: 50px; top: 10px; right: 10px; }
+            .name-list { gap: 1rem; }
+            .name-card { padding: 1rem; }
+            .member-name { font-size: 1.4rem; letter-spacing: 1px; }
+            .code-status { display: none; } /* Ascundem statusul pe mobile */
+        }
+    </style>
+</head>
+<body>
+    <div class="screen-container">
+        <header class="header-area">
+            <div class="scarab-icon"></div> <div class="team-info">
+                <h1 class="team-name">FETELE POWERBUG</h1>
+                <p class="slogan-text">Powerbug: Schimbăm lumea. O linie de cod pe rând.</p>
+            </div>
+            <div class="hex-grid"></div> </header>
+
+        <main class="main-frame">
+            <div class="name-list">
+                <div class="name-card">
+                    <div class="card-pattern"></div>
+                    <span class="member-name">DARIA</span>
+                </div>
+                <div class="name-card">
+                    <div class="card-pattern"></div>
+                    <span class="member-name">ELENA</span>
+                </div>
+                <div class="name-card">
+                    <div class="card-pattern"></div>
+                    <span class="member-name">MARIA</span>
+                </div>
+                <div class="name-card">
+                    <div class="card-pattern"></div>
+                    <span class="member-name">DELIA</span>
+                </div>
+            </div>
+        </main>
+
+        <footer class="code-status">
+            <span class="code-icon">&lt;/&gt;</span>
+            <div class="scarab-mini"></div>
+            <span>// DEPLOYED</span>
+        </footer>
+    </div>
+</body>
+</html>
